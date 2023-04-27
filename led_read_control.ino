@@ -4,6 +4,7 @@ String teststr;
 int interruptpin = 2;
 int interruptpin2 = 3;
 unsigned long cnt = 0;
+int button=0;
 void setup(){
     pinMode(led,OUTPUT);
     pinMode(interruptpin, INPUT_PULLUP);
@@ -24,31 +25,57 @@ void loop(){
 
   teststr.trim(); //띄어쓰기 제거
   
-  }
-  if (turn_off ==1)
-  { //turn_off 변수가 1일 경우 led 전원 off
-    off();
-    
-  }
-  else
-  { //turn_off 변수가 1이 아닐경우 led전원을 제어 시작
     if (teststr=="one")
     {
-      //Serial.println("1");
+      button=1;
+    }
+    else if(teststr=="two")
+    {
+      button=2;
+    }
+    else if(teststr=="three")
+    {
+      button=3;
+    }
+    else if(teststr=="zero")
+    {
+      button=0;
+    }
+  }
+  if (turn_off ==1)
+  {
+    off();
+    //초기화해주기
+    button=0;
+    teststr="";
+  }
+  else
+  {
+    if (button%4==1)
+    {
+      button=1;
+      
       second();
+      
     }
-    else if(teststr == "two")
+    else if(button%4==2)
     {
-      //Serial.println("2");
+      button=2;
+      teststr = "";
       halfsecond();
+      
     }   
-    else if(teststr == "three")
+    else if(button%4==3)
     {
-      //Serial.println("3");
+      button=3;
+      teststr = "";
       full();
+      
     }
-    else if (teststr == "zero")
+    else if (button%4==0)
     {
+      button=0;
+      teststr = "";
       off();
     }
   }
@@ -78,17 +105,14 @@ void full() //켜져있는 상태
 }
 void off(){
   digitalWrite(led, LOW);
-  delay(1);
+  delay(1000);
 }
 
 void interrupt() //누르는 순간
 {
-    if(millis()-cnt > 150) 
+    if(millis()-cnt > 300)
     {
-        //Serial.println(cnt);
-
-        
-        
+      button++;
     }
     cnt = millis();
 }
@@ -96,13 +120,13 @@ void interrupt2() //떼는 순간
 {
     if(millis()-cnt > 2000)
     {
-        if (turn_off==0)
-        {
-          turn_off=1; 
-        }
-        else
-        {
-          turn_off=0;
-        }
+      if (turn_off==0)
+      {
+        turn_off=1; 
+      }
+      else
+      {
+        turn_off=0;
+      }
     }
 }
