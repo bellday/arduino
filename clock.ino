@@ -44,7 +44,7 @@ void loop()
                 Serial.println((String) "Angle : " + abs(answer));
                 lcd.setCursor(0,0);
                 lcd.print("Time:");
-                lcd.print(hours + (String) ":"+ min);
+                lcd.print(hour);
                 lcd.setCursor(0,1);
                 lcd.print("Angle:");
                 lcd.print(abs(answer));
@@ -55,7 +55,7 @@ void loop()
                 Serial.println((String) "Angle : " + abs(answer));
                 lcd.setCursor(0,0);
                 lcd.print("Time:");
-                lcd.print(hours + (String) ":"+ min);
+                lcd.print(hour);
                 lcd.setCursor(0,1);
                 lcd.print("Angle:");
                 lcd.print(abs(answer));
@@ -69,7 +69,7 @@ void loop()
                 Serial.println((String) "Angle : " + abs(answer));
                 lcd.setCursor(0,0);
                 lcd.print("Time:");
-                lcd.print(hours + (String) ":"+ min);
+                lcd.print(hour);
                 lcd.setCursor(0,1);
                 lcd.print("Angle:");
                 lcd.print(abs(answer));
@@ -80,7 +80,7 @@ void loop()
                 Serial.println((String) "Angle : " + abs(answer));
                 lcd.setCursor(0,0);
                 lcd.print("Time:");
-                lcd.print(hours + (String) ":"+ min);
+                lcd.print(hour);
                 lcd.setCursor(0,1);
                 lcd.print("Angle:");
                 lcd.print(abs(answer));
