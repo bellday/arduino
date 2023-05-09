@@ -1,6 +1,12 @@
+
+#include <LiquidCrystal_I2C.h>  // LiquidCrystal_I2C 헤더파일 호출
+LiquidCrystal_I2C lcd(0x27, 16, 2); // LCD의 address 주소 및 크기 입력
+
 void setup()
 {
     Serial.begin(115200); //통신을 위하여 사용
+    lcd.init();  // LCD 초기화
+    lcd.backlight();  // LCD 백라이트 함수
 }
 
 void loop()
@@ -36,11 +42,23 @@ void loop()
             {
                 answer =  360 - (hourAngle - MinuteAngle);
                 Serial.println((String) "Angle : " + abs(answer));
+                lcd.setCursor(0,0);
+                lcd.print("Time:");
+                lcd.print(hours + (String) ":"+ min);
+                lcd.setCursor(0,1);
+                lcd.print("Angle:");
+                lcd.print(abs(answer));
             }
             else
             {
                 answer = hourAngle - MinuteAngle;
                 Serial.println((String) "Angle : " + abs(answer));
+                lcd.setCursor(0,0);
+                lcd.print("Time:");
+                lcd.print(hours + (String) ":"+ min);
+                lcd.setCursor(0,1);
+                lcd.print("Angle:");
+                lcd.print(abs(answer));
             }
         }
         else
@@ -49,11 +67,23 @@ void loop()
             {
                 answer =  360 - (MinuteAngle - hourAngle);
                 Serial.println((String) "Angle : " + abs(answer));
+                lcd.setCursor(0,0);
+                lcd.print("Time:");
+                lcd.print(hours + (String) ":"+ min);
+                lcd.setCursor(0,1);
+                lcd.print("Angle:");
+                lcd.print(abs(answer));
             }
             else
             {
                 answer =  MinuteAngle - hourAngle;
                 Serial.println((String) "Angle : " + abs(answer));
+                lcd.setCursor(0,0);
+                lcd.print("Time:");
+                lcd.print(hours + (String) ":"+ min);
+                lcd.setCursor(0,1);
+                lcd.print("Angle:");
+                lcd.print(abs(answer));
             }
         }
     }
